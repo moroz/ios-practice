@@ -20,7 +20,7 @@ class ViewController: UIViewController {
             message: "Hello world",
             preferredStyle: .alert
         )
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
 }
