@@ -9,19 +9,44 @@ import SwiftUI
 
 struct CounterView: View {
   @State private var count = 0
+  @State private var modalShown = false
 
   var body: some View {
-    HStack {
-        Button("-") { count -= 1 }
+    ZStack {
+      VStack {
+        HStack {
+          Button("-") { count -= 1 }
             .buttonStyle(.bordered)
             .tint(.red)
 
-      Text(String(count))
-        .padding()
+          Text(String(count))
+            .frame(width: 50.0, height: 25.0)
+            .padding()
 
-      Button("+") { count += 1 }
+          Button("+") { count += 1 }
             .buttonStyle(.bordered)
             .tint(.mint)
+        }
+      }
+      VStack {
+        Spacer()
+        Button(
+          action: { count = 0 },
+          label: {
+            Text("Reset")
+              .frame(width: 100.0, height: 25.0)
+          }
+        )
+        .buttonStyle(.bordered)
+        .tint(.blue)
+        Spacer()
+          .frame(height: 220.0)
+        Button("Show modal") { modalShown.toggle() }
+          .padding(.bottom)
+          .sheet(isPresented: $modalShown) {
+            ModalView()
+          }
+      }
     }
   }
 }
