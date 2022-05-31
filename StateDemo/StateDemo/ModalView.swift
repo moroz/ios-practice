@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ModalView: View {
   @Environment(\.presentationMode) var presentationMode
+  @Binding var count: Int
 
   var body: some View {
     VStack {
@@ -16,7 +17,13 @@ struct ModalView: View {
         .font(.title)
         .padding()
       Spacer()
-      Text("Hello, I am in a modal")
+      Text(
+        "Hello, I am in a modal. The current value of the counter, which I have obtained through your binding, is \(count)."
+      )
+      .multilineTextAlignment(.center)
+      .padding()
+      Button("This button can reset your counter through two-way binding") { count = 0 }
+        .padding(.top)
       Spacer()
       Button("Dismiss") { presentationMode.wrappedValue.dismiss() }
         .buttonStyle(.bordered)
@@ -28,6 +35,6 @@ struct ModalView: View {
 
 struct ModalView_Previews: PreviewProvider {
   static var previews: some View {
-    ModalView()
+    ModalView(count: .constant(2137))
   }
 }

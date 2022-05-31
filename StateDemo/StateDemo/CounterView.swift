@@ -13,20 +13,18 @@ struct CounterView: View {
 
   var body: some View {
     ZStack {
-      VStack {
-        HStack {
-          Button("-") { count -= 1 }
-            .buttonStyle(.bordered)
-            .tint(.red)
+      HStack {
+        Button("-") { count -= 1 }
+          .buttonStyle(.bordered)
+          .tint(.red)
 
-          Text(String(count))
-            .frame(width: 50.0, height: 25.0)
-            .padding()
+        Text(String(count))
+          .frame(width: 50.0, height: 25.0)
+          .padding()
 
-          Button("+") { count += 1 }
-            .buttonStyle(.bordered)
-            .tint(.mint)
-        }
+        Button("+") { count += 1 }
+          .buttonStyle(.bordered)
+          .tint(.mint)
       }
       VStack {
         Spacer()
@@ -40,11 +38,11 @@ struct CounterView: View {
         .buttonStyle(.bordered)
         .tint(.blue)
         Spacer()
-          .frame(height: 220.0)
+          .frame(height: 150.0)
         Button("Show modal") { modalShown.toggle() }
           .padding(.bottom)
           .sheet(isPresented: $modalShown) {
-            ModalView()
+            ModalView(count: $count)
           }
       }
     }
