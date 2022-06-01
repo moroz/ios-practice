@@ -12,6 +12,7 @@
 		F9730835284809C000FF6A56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9730834284809C000FF6A56 /* Assets.xcassets */; };
 		F9730838284809C000FF6A56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9730837284809C000FF6A56 /* Preview Assets.xcassets */; };
 		F973083F284809DB00FF6A56 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F973083E284809DB00FF6A56 /* DataStore.swift */; };
+		F973084128480D6A00FF6A56 /* DatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F973084028480D6A00FF6A56 /* DatabaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		F9730834284809C000FF6A56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9730837284809C000FF6A56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F973083E284809DB00FF6A56 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		F973084028480D6A00FF6A56 /* DatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +55,10 @@
 		F973082F284809BE00FF6A56 /* SQLiteTest */ = {
 			isa = PBXGroup;
 			children = (
+				F973084328480D7A00FF6A56 /* Models */,
 				F9730830284809BE00FF6A56 /* SQLiteTestApp.swift */,
 				F9730832284809BE00FF6A56 /* ContentView.swift */,
-				F973083E284809DB00FF6A56 /* DataStore.swift */,
+				F973084228480D6F00FF6A56 /* Views */,
 				F9730834284809C000FF6A56 /* Assets.xcassets */,
 				F9730836284809C000FF6A56 /* Preview Content */,
 			);
@@ -68,6 +71,22 @@
 				F9730837284809C000FF6A56 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F973084228480D6F00FF6A56 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F973084028480D6A00FF6A56 /* DatabaseView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F973084328480D7A00FF6A56 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F973083E284809DB00FF6A56 /* DataStore.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9730833284809BE00FF6A56 /* ContentView.swift in Sources */,
+				F973084128480D6A00FF6A56 /* DatabaseView.swift in Sources */,
 				F973083F284809DB00FF6A56 /* DataStore.swift in Sources */,
 				F9730831284809BE00FF6A56 /* SQLiteTestApp.swift in Sources */,
 			);
