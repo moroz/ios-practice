@@ -11,6 +11,26 @@ import SQLite3
 let tutorialDirectoryUrl = try? FileManager.default.url(
   for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
+func formatError(db: OpaquePointer?) -> String? {
+  if let raw_errmsg = sqlite3_errmsg(db) {
+    return String(cString: raw_errmsg)
+  }
+  return nil
+}
+
+struct Contact {
+  var id: Int?
+  var name: String
+  var email: String
+  var phone: String?
+
+  init(name: String, email: String, phone: String?) {
+    self.name = name
+    self.email = email
+    self.phone = phone
+  }
+}
+
 class DataStore: ObservableObject {
   var dbPath: String? {
     tutorialDirectoryUrl?.appendingPathComponent("store.db").relativePath
@@ -63,10 +83,45 @@ class DataStore: ObservableObject {
     return false
   }
 
+  func insertContact(_ row: Contact) -> Bool {
+    let queryString = """
+      insert into Contact (name, email, phone) values (?, ?, ?);
+      """
+
+    var statement: OpaquePointer?
+    let result = sqlite3_prepare_v2(db, queryString, -1, &statement, nil)
+    if result == SQLITE_OK {
+      sqlite3_bind_text(statement, 1, row.name, -1, nil)
+      sqlite3_bind_text(statement, 2, row.email, -1, nil)
+      if let phone = row.phone {
+        sqlite3_bind_text(statement, 3, phone, -1, nil)
+      } else {
+        sqlite3_bind_null(statement, 3)
+      }
+      let result = sqlite3_step(statement)
+      if result == SQLITE_DONE {
+        sqlite3_finalize(statement)
+        return true
+      } else {
+        if let err = formatError(db: db) {
+          print(err)
+          return false
+        }
+      }
+      sqlite3_finalize(statement)
+      return false
+    } else {
+      print("Could not prepare statement")
+      return false
+    }
+  }
+
   private let createTableString = """
     create table Contact(
-      id int primary key not null,
-      name char(255)
+      id integer primary key,
+      name varchar(255) not null,
+      email varchar(255) not null unique,
+      phone varchar(255)
     );
     """
 
