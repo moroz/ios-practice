@@ -5,7 +5,7 @@ func isPalindrome(_ str: String) -> Bool {
 }
 
 if CommandLine.arguments.count == 1 {
-    print("Usage: palindrome WORD")
+    print("Usage: palindrome WORDS")
     exit(0)
 }
 
