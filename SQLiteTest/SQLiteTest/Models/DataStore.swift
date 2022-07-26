@@ -105,11 +105,10 @@ class DataStore: ObservableObject {
       } else {
         if let err = formatError(db: db) {
           print(err)
-          return false
         }
+        sqlite3_finalize(statement)
+        return false
       }
-      sqlite3_finalize(statement)
-      return false
     } else {
       print("Could not prepare statement")
       return false
